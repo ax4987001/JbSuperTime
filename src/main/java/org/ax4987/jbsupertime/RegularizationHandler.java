@@ -3,7 +3,7 @@ package org.ax4987.jbsupertime;
 import java.util.*;
 
 public class RegularizationHandler {
-    Map<String, Double> commandRegularizationHandler(List<String> commands){
+    public static Map<String, Double> commandRegularizationHandler(List<String> commands){
         Random random = new Random();
         Map<String, Double> runningCommand = new HashMap<>();
         List<String> maybeRunning = new ArrayList<>();
@@ -18,11 +18,11 @@ public class RegularizationHandler {
         runningCommand.put(maybeRunning.get(run),getProbability(maybeRunning.get(run)));
         return runningCommand;
     }
-    private boolean isMandatory(String command){
+    private static boolean isMandatory(String command){
         String[] parts = command.split("<->");
         return parts.length == 1;
     }
-    private double getProbability(String command){
+    private static double getProbability(String command){
         float percentage;
         String[] parts = command.split("<->");
         if (parts.length == 2){
