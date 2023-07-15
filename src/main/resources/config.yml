@@ -1,0 +1,35 @@
+kill-group:
+  command1:
+    mythic-mob-id:
+      - ""
+    commands:
+      - ""
+      - ""
+      - ""
+    mm-time: 0
+    time-group:
+      - ""
+
+time-group:
+  delay-command1:
+    commands:
+      - ""
+      - ""
+      - ""
+    delay: 0
+
+timer-group:
+  timer-command1:
+    timer: "yyyy-mm-dd hh-mm-ss"
+    commands:
+      - ""
+      - ""
+      - ""
+    timer-task:
+      - ""
+
+timer-task:
+  timer-task1:
+    timer: ""
+    commands:
+      - ""

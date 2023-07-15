@@ -1,0 +1,10 @@
+name: JbSuperTime
+version: '${project.version}'
+main: org.ax4987.jbsupertime.JbSuperTime
+author: ax4987
+description: 定时命令管理器
+commands:
+  jbsupertime:
+    description: 为玩家添加组,为玩家执行指令组,为玩家拥有的组添加时间,重载插件
+    usage: /<command> <add/run/add-time/reload> [playerName] [group] [time]
+    permission-message: 哦，你好像没有使用该命令的权限~
