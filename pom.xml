@@ -6,7 +6,7 @@
 
     <groupId>org.ax4987</groupId>
     <artifactId>JbSuperTime</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>JbSuperTime</name>
@@ -70,5 +70,20 @@
             <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>PlaceholderAPI</artifactId>
+            <version>2.11.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/PlaceholderAPI-2.11.3.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>MythicMobs</artifactId>
+            <version>4.13.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MythicMobs-4.13.0.jar</systemPath>
+        </dependency>
     </dependencies>
+
 </project>

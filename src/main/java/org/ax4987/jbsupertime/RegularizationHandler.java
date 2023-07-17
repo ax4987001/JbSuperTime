@@ -7,15 +7,15 @@ public class RegularizationHandler {
         Random random = new Random();
         Map<String, Double> runningCommand = new HashMap<>();
         List<String> maybeRunning = new ArrayList<>();
-        for (int i = 0;i < commands.size();i++){
-            if (!isMandatory(commands.get(i))){
-                maybeRunning.add(commands.get(i));
-            }else {
-                runningCommand.put(commands.get(i),getProbability(commands.get(i)));
+        for (String command : commands) {
+            if (!isMandatory(command)) {
+                maybeRunning.add(command);
+            } else {
+                runningCommand.put(getCommand(command), getProbability(command));
             }
         }
         int run = random.nextInt(maybeRunning.size());
-        runningCommand.put(maybeRunning.get(run),getProbability(maybeRunning.get(run)));
+        runningCommand.put(getCommand(maybeRunning.get(run)),getProbability(maybeRunning.get(run)));
         return runningCommand;
     }
     private static boolean isMandatory(String command){
@@ -30,5 +30,9 @@ public class RegularizationHandler {
             return percentage;
         }
         return 100.0;
+    }
+    private static String getCommand(String command){
+        String[] parts = command.split("<->");
+        return parts[0];
     }
 }
