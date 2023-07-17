@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class JbSuperTime extends JavaPlugin {
+    public static JbSuperTime INSTANCE;
     public static FileConfiguration config;
     public static ConfigurationSection kill_group;
     public static List<String> kill_group_name = new ArrayList<>();
@@ -41,6 +42,7 @@ public final class JbSuperTime extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        INSTANCE = this;
         saveDefaultConfig();
         config = getConfig();
         String groups;

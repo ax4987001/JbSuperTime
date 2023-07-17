@@ -4,6 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class JbCommandExecutor implements CommandExecutor {
     public static String playerName;
@@ -12,18 +16,32 @@ public class JbCommandExecutor implements CommandExecutor {
     private static final JbSuperTime plugin = JbSuperTime.INSTANCE;
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
-        if (command.getName().equalsIgnoreCase("jbsupertime")){
-            if (args.length >= 3){
-                if (args[0].equalsIgnoreCase("add") && args.length == 3){
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("jbsupertime")) {
+            if (args.length >= 3) {
+                if (args[0].equalsIgnoreCase("add") && args.length == 3) {
                     playerName = args[1];
                     group = args[2];
-
+                    if (isGroup(group)) {
+                        if (isOnLine(playerName)){
+                            TimeGroupHandler.addTimeGroup(playerName,group);
+                        }
+                    }else {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[ &b&lJbSuperTime &8]&f不存在的指令组"));
+                        return true;
+                    }
                     return true;
-                }else if (args[0].equalsIgnoreCase("run") && args.length == 3){
+                } else if (args[0].equalsIgnoreCase("run") && args.length == 3) {
                     playerName = args[1];
                     group = args[2];
-
+                    if (isGroup(group)) {
+                        if (isOnLine(playerName)){
+                            TimeGroupHandler.runTimeGroup(playerName,group);
+                        }
+                    }else {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[ &b&lJbSuperTime &8]&f不存在的指令组"));
+                        return true;
+                    }
                     return true;
                 } else if (args[0].equalsIgnoreCase("add-time") && args.length == 4) {
                     playerName = args[1];
