@@ -80,9 +80,9 @@
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>MythicMobs</artifactId>
-            <version>4.13.0</version>
+            <version>4.4.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/MythicMobs-4.13.0.jar</systemPath>
+            <systemPath>${project.basedir}/lib/MythicMobs-4.4.1.jar</systemPath>
         </dependency>
     </dependencies>
 

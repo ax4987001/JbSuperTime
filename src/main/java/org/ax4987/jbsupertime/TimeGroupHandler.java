@@ -2,23 +2,18 @@ package org.ax4987.jbsupertime;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 
-public class TimeGroupHandler extends JavaPlugin {
-    public static JbSuperTime plugin;
+public class TimeGroupHandler extends JbSuperTime {
     public static Map<String, Map<String,BukkitTask>> time_tasks = new HashMap<>();
     private static Map<String,Long> taskTime = new HashMap<>();
     private static Map<String,Long> taskDelay = new HashMap<>();
     private static Map<String,BukkitTask> tasks = new HashMap<>();
     private static Map<UUID, Long> killTimers = new HashMap<>();
     private static Map<String,Double> reallyCommand;
-    TimeGroupHandler(JbSuperTime plugin){
-        TimeGroupHandler.plugin = plugin;
-    }
-    public static void timeGroupCommandHandler(Player player, List<String> commands,long delay,String taskName){
+    public static void timeGroupCommandHandler(Player player, List<String> commands, long delay, String taskName){
         reallyCommand = RegularizationHandler.commandRegularizationHandler(commands);
         long startTime = System.currentTimeMillis();
         killTimers.put(player.getUniqueId(), startTime);
@@ -26,7 +21,7 @@ public class TimeGroupHandler extends JavaPlugin {
         //init
 
         // 创建一个异步任务来检查计时器
-        BukkitTask task = Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> {
+        BukkitTask task = Bukkit.getScheduler().runTaskLaterAsynchronously(new JbSuperTime(), () -> {
             // 检查计时器是否仍然存在
             if (killTimers.containsKey(player.getUniqueId())) {
                 // 获取当前时间
@@ -65,7 +60,7 @@ public class TimeGroupHandler extends JavaPlugin {
         List<String> commands = getCommands(group);
         timeGroupCommandHandler(player,commands,0,group);
     }
-    public static void addDelayTimerGroup(String playerName,String group,int delay){
+    public static void addDelayTimerGroup(String playerName, String group, int delay){
         Player player = getPlayer(playerName);
         List<String> commands = getCommands(group);
         long currentDelay = currentDelay(group);

@@ -10,8 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class JbSuperTime extends JavaPlugin {
-    public static JbSuperTime INSTANCE;
+ class JbSuperTime extends JavaPlugin {
     public static FileConfiguration config;
     public static ConfigurationSection kill_group;
     public static List<String> kill_group_name = new ArrayList<>();
@@ -38,11 +37,11 @@ public final class JbSuperTime extends JavaPlugin {
     public static Map<String,String> timer_task_timer = new HashMap<>();
     public static Map<String,List<String>> timer_task_commands = new HashMap<>();
     public static boolean timer_task_is_read = false;
+    public JbSuperTime(){}
     //Timer_Task
     @Override
     public void onEnable() {
         // Plugin startup logic
-        INSTANCE = this;
         saveDefaultConfig();
         config = getConfig();
         String groups;
@@ -107,18 +106,18 @@ public final class JbSuperTime extends JavaPlugin {
         }
         if (time_group_is_read){
             SendMessage("time-group running\n");
-            new TimeGroupHandler(this);
+            new TimeGroupHandler();
         }else {
             SendMessage("time-group not found\n");
         }
         if (timer_group_is_read){
-            new TimerGroupHandler(this);
+            new TimerGroupHandler();
             SendMessage("timer-group running\n");
         }else {
             SendMessage("timer-group not found\n");
         }
         if (timer_task_is_read){
-            new TimerTaskHandler(this);
+            new TimerTaskHandler();
             SendMessage("timer-task running\n");
         }else {
             SendMessage("timer-task not found\n");

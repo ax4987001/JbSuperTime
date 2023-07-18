@@ -12,8 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class TimerGroupHandler extends JavaPlugin {
-    public static JbSuperTime plugin;
+public class TimerGroupHandler extends JbSuperTime {
     public static String formattedTime;
     public static String timer_group = null;
     public static List<String> timer_groups = new ArrayList<>();
@@ -23,14 +22,12 @@ public class TimerGroupHandler extends JavaPlugin {
     public static LocalTime currentTime;
     public static Collection<? extends Player> players;
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
-    TimerGroupHandler(JbSuperTime plugin){
-        TimeGroupHandler.plugin = plugin;
-    }
+
     @Override
     public void onEnable() {
 
         // 在服务器启动时注册任务，每隔一秒执行一次
-        getServer().getScheduler().runTaskTimer(plugin, () -> {
+        getServer().getScheduler().runTaskTimer(new JbSuperTime(), () -> {
             players = Bukkit.getServer().getOnlinePlayers();
             // 获取当前的时间
             currentTime = LocalTime.now();
@@ -89,7 +86,7 @@ public class TimerGroupHandler extends JavaPlugin {
     @Override
     public void onDisable() {
         // 在服务器关闭时取消任务
-        getServer().getScheduler().cancelTasks(plugin);
+        getServer().getScheduler().cancelTasks(new JbSuperTime());
     }
 }
 

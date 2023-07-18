@@ -9,7 +9,7 @@ public class MyPlaceholderExpansion extends PlaceholderExpansion {
     }
     @Override
     public String getIdentifier() {
-        return "myplugin";
+        return "jbsupertime";
     }
     @Override
     public String getAuthor() {
@@ -23,10 +23,9 @@ public class MyPlaceholderExpansion extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player player, String identifier) {
         for (String s : JbSuperTime.time_group_name){
             if (identifier.equals(s)) {
-                return JbSuperTime.timer_group_timer.get(s);
+                return String.valueOf(JbSuperTime.time_group_delay.get(s));
             }
         }
-
         return null;
     }
 }

@@ -9,11 +9,10 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class JbCommandExecutor implements CommandExecutor {
+public class JbCommandExecutor extends JbSuperTime implements CommandExecutor {
     public static String playerName;
     public static String group;
     public static int time;
-    private static final JbSuperTime plugin = JbSuperTime.INSTANCE;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -58,9 +57,9 @@ public class JbCommandExecutor implements CommandExecutor {
                 }
             }else if (args[0].equalsIgnoreCase("reload") && args.length == 1) {
                 sender.sendMessage("正在重启插件...");
-                plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
-                    plugin.getServer().getPluginManager().disablePlugin(plugin);
-                    plugin.getServer().getPluginManager().enablePlugin(plugin);
+                this.getServer().getScheduler().runTaskLater(this, () -> {
+                    this.getServer().getPluginManager().disablePlugin(this);
+                    this.getServer().getPluginManager().enablePlugin(this);
                     sender.sendMessage("插件重启完成！");
                 }, 20L); // 延迟20个游戏刻执行重启逻辑
 
@@ -71,7 +70,7 @@ public class JbCommandExecutor implements CommandExecutor {
         return false;
     }
     private boolean isGroup(String group){
-        List<String> groups = JbSuperTime.timer_group_name;
+        List<String> groups = JbSuperTime.time_group_name;
         return groups.contains(group);
     }
     private boolean isOnLine(String playerName){

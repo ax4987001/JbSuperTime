@@ -9,21 +9,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Map;
 
-public class TimerTaskHandler extends JavaPlugin {
-    public static JbSuperTime plugin;
+public class TimerTaskHandler extends JbSuperTime {
     public static Collection<? extends Player> players;
     public static LocalTime currentTime;
     public static String formattedTime;
     public static String timer_task = null;
     public static Map<String,Double> timer_task_commands;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd HH-mm-ss");
-    TimerTaskHandler(JbSuperTime plugin){
-        TimerTaskHandler.plugin = plugin;
-    }
+
     @Override
     public void onEnable() {
         // 在服务器启动时注册任务，每隔一秒执行一次
-        getServer().getScheduler().runTaskTimer(plugin, () -> {
+        getServer().getScheduler().runTaskTimer(new JbSuperTime(), () -> {
             players = Bukkit.getServer().getOnlinePlayers();
             // 获取当前的时间
             currentTime = LocalTime.now();
@@ -49,6 +46,6 @@ public class TimerTaskHandler extends JavaPlugin {
     @Override
     public void onDisable() {
         // 在服务器关闭时取消任务
-        getServer().getScheduler().cancelTasks(plugin);
+        getServer().getScheduler().cancelTasks(new JbSuperTime());
     }
 }
